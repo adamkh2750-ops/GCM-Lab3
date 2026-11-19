@@ -79,9 +79,8 @@ PASS: no lost updates; exact blocking threshold.</pre>
 <li>בטרמינל PowerShell של הפרויקט מריצים את השורה הראשונה, מדביקים את הכתובת כשתתבקש ולוחצים Enter. השורה השנייה מציגה את היעד שהגדרת.
 <pre>git remote set-url origin (Read-Host "Paste your GitHub HTTPS URL")
 git remote -v</pre></li>
-<li>אחרי שווידאת שהכתובת של <code>origin (push)</code> מכילה את החשבון שלך ואת שם המאגר שבחרת, מעלים את ענף העבודה ואת נקודת המוצא של מטלה 2.
-<pre>git push -u origin lab3
-git push origin 0e4dd14:refs/heads/lab2</pre></li>
+<li>אחרי שווידאת שהכתובת של <code>origin (push)</code> מכילה את החשבון שלך ואת שם המאגר שבחרת, מעלים רק את <code>lab3</code>. הענף כולל את כל הפרויקט, והיסטוריית הקומיטים שלו מראה שהתחיל מהקוד של מטלה 2.
+<pre>git push -u origin lab3</pre></li>
 <li>פותחים את המאגר שלך בדפדפן, בוחרים <code>lab3</code> ומעתיקים את כתובת הענף לדוח. במאגר פרטי נותנים למרצה גישת קריאה.</li>
 </ol>
 <h3>שלב 10 — סיום ההגשה</h3>
