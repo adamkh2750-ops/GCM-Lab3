@@ -24,10 +24,10 @@ public record LoginResult(Status status, String username, int remainingAttempts,
 
     public String message() {
         return switch (status) {
-            case SUCCESS -> "Login successful";
-            case ERROR -> remainingAttempts < 0 ? "Incorrect details"
-                    : "Incorrect details. Attempts remaining: " + remainingAttempts;
-            case BLOCKED -> "Account blocked. " + remainingSeconds + " seconds remaining";
+            case SUCCESS -> "התחברות הצליחה";
+            case ERROR -> remainingAttempts < 0 ? "פרטים שגויים"
+                    : "פרטים שגויים. ניסיונות שנותרו: " + remainingAttempts;
+            case BLOCKED -> "החשבון חסום, נותרו " + remainingSeconds + " שניות";
         };
     }
 }

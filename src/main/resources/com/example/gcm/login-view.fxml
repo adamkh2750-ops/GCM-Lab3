@@ -10,7 +10,7 @@
     <Label fx:id="policyLabel" wrapText="true" />
     <TextField fx:id="usernameField" promptText="username (email)" />
     <PasswordField fx:id="passwordField" promptText="password" />
-    <Label fx:id="errorLabel" textFill="RED" wrapText="true" minHeight="22.0" />
+    <Label fx:id="errorLabel" textFill="RED" wrapText="true" minHeight="22.0" nodeOrientation="RIGHT_TO_LEFT" />
     <Button fx:id="loginButton" defaultButton="true" text="Login" onAction="#onLoginButtonClick" />
     <Button text="Open another login window" onAction="#onNewWindowClick" />
     <Separator />

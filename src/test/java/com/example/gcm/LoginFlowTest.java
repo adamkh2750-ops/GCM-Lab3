@@ -47,7 +47,7 @@ class LoginFlowTest {
     @Test void unknownEmailReturnsOnlyGenericErrorAndNoTracking() throws Exception {
         try (LoginRuntime runtime = runtime(3)) {
             LoginResult result = login(runtime, "unknown@example.org", PASSWORD);
-            assertEquals("Incorrect details", result.message());
+            assertEquals("פרטים שגויים", result.message());
             assertEquals(1, runtime.tracker().trackedUserCount());
         }
     }

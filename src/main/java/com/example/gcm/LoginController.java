@@ -52,7 +52,7 @@ public class LoginController {
         String password = passwordField.getText();
         long version = ++viewVersion;
         setBusy(true);
-        errorLabel.setText("Checking...");
+        errorLabel.setText("בודק פרטים...");
         runtime.threads().start("login-task", new LoginTask(email, password, runtime.service(),
                 runtime.tracker(), runtime.queue(), result -> {
                     if (!disposed && viewVersion == version) {
