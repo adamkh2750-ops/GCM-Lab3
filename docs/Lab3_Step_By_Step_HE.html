@@ -1,0 +1,74 @@
+<!doctype html><html lang="he" dir="rtl"><meta charset="utf-8"><title>Lab 3 — מדריך התקנה והפעלה</title>
+<style>
+@page{size:A4;margin:17mm 17mm 18mm}*{box-sizing:border-box}body{font-family:'DejaVu Sans',Arial,sans-serif;color:#16243a;font-size:11.3pt;line-height:1.55;margin:0}h1{font-size:23pt;line-height:1.25;margin:0 0 8mm}h2{font-size:16pt;margin:0 0 4mm;color:#154c85}h3{font-size:12pt;margin:4mm 0 1mm}p{margin:2mm 0 3mm}table{border-collapse:collapse;width:100%;font-size:10.3pt;margin:4mm 0}th,td{border-bottom:1px solid #ccd5df;padding:2.5mm;vertical-align:top;text-align:right}th{background:#eaf0f7;color:#123f6d}ol,ul{padding-right:6mm;margin:2mm 0}li{margin:2mm 0}code,.ltr{direction:ltr;unicode-bidi:embed;font-family:'DejaVu Sans Mono',monospace;font-size:9.7pt}pre{direction:ltr;text-align:left;white-space:pre-wrap;overflow-wrap:anywhere;background:#f0f3f7;padding:3mm;font-size:9pt;line-height:1.4;color:#172c44}a{color:#13559a}section+section{break-before:page}.note{background:#f0f5fb;padding:3mm 4mm;border-right:3px solid #296ca8}.small{font-size:9.4pt;color:#4f6074}.step{font-weight:bold}.tag{color:#376489;font-size:10pt;margin-bottom:2mm}.keep{break-inside:avoid}
+</style>
+<section>
+<div class="tag">הנדסת תוכנה · Lab 3 · המשך למטלות 1–2</div><h1>מה צריך להתקין<br>ואיך מתחילים</h1>
+<p>הפתרון ממשיך את ענף <code>lab2</code> במאגר הקיים. לפי הפרויקט, סביבת העבודה היא <b>JDK 25</b> ו־JavaFX בגרסה 21.0.6. אין צורך בהתקנה מיוחדת עבור חוטים, סנכרון או תורים.</p>
+<p class="note">את הקבצים וההגדרות בפרויקט בדקתי. מה מותקן בפועל במחשב שלך צריך לוודא מתוך IntelliJ; התקנות שביצענו בעבר אינן הוכחה שההגדרות עדיין פעילות.</p>
+<table><thead><tr><th>רכיב</th><th>האם צריך?</th><th>מה עושים</th></tr></thead><tbody>
+<tr><td>IntelliJ IDEA</td><td>סביבת העבודה המומלצת</td><td>אם כבר מותקנת ונפתחת — משתמשים בה.</td></tr>
+<tr><td>JDK 25</td><td>נדרש לפרויקט כפי שהוגדר</td><td>בודקים ב־Project SDK. מורידים רק אם אינו זמין.</td></tr>
+<tr><td>JavaFX</td><td>נדרש להפעלת המסכים</td><td>Maven מוריד את הספריות אוטומטית מתוך <code>pom.xml</code>.</td></tr>
+<tr><td>Maven</td><td>נדרש לבנייה ולבדיקות</td><td>אפשר להשתמש במנגנון של IntelliJ או ב־Maven Wrapper המצורף; אין צורך בהתקנה נפרדת מראש.</td></tr>
+<tr><td>Git</td><td>נדרש לעבודה עם ענף והיסטוריית commits</td><td>בודקים ב־Settings → Version Control → Git → Test. מתקינים אם הבדיקה נכשלת כי Git חסר.</td></tr>
+<tr><td>Scene Builder</td><td>רק לעריכה חזותית של מסכים</td><td>לא צריך כדי לפתוח ולהריץ את הפתרון המוכן.</td></tr>
+<tr><td>GitHub Desktop</td><td>אפשרי</td><td>אפשר לבצע העלאה מתוך IntelliJ, ולכן אין חובה להתקינו.</td></tr>
+</tbody></table>
+<h3>שלב 1 — חילוץ ופתיחת הפרויקט</h3>
+<ol><li>מורידים את קובץ הפרויקט למחשב, לוחצים עליו בלחצן ימני ובוחרים <span class="ltr">Extract All</span>.</li><li>פותחים את IntelliJ ובוחרים <span class="ltr">File → Open</span>.</li><li>בוחרים את תיקיית <code>GCM-Labs</code> שחולצה, או את <code>pom.xml</code> שבתוכה, ופותחים כפרויקט.</li><li>בתיקיית הפרויקט צריכים להופיע <code>pom.xml</code>, תיקיית <code>src</code> ו־<code>users.txt</code>. שומרים את פרויקט המטלה הישנה בתיקייה נפרדת.</li></ol>
+</section>
+<section>
+<h2>הגדרות והרצה ראשונה</h2>
+<h3>שלב 2 — בדיקת JDK</h3>
+<ol><li>בתפריט העליון: <span class="ltr">File → Project Structure → Project</span>.</li><li>בשדה <span class="ltr">SDK</span> בוחרים JDK בגרסה 25.</li><li>אם אין גרסה 25: בוחרים <span class="ltr">Add SDK → Download JDK</span>, מסמנים גרסה 25, מורידים ומאשרים. במחשב Windows עם מעבד Intel/AMD בוחרים חבילת x64 אם נשאלים.</li><li>לוחצים <span class="ltr">Apply → OK</span>. אם מריצים באמצעות Maven, בודקים גם ש־Maven Runner משתמש ב־Project JDK.</li></ol>
+<h3>שלב 3 — טעינת הספריות</h3>
+<p>פותחים <span class="ltr">View → Tool Windows → Maven</span> ולוחצים על <span class="ltr">Reload All Maven Projects</span> או על סמל הרענון. בהפעלה הראשונה דרוש אינטרנט. ממתינים לסיום ההורדות וה־Indexing.</p>
+<h3>שלב 4 — בחירת נקודת ההתחלה</h3>
+<p>בתיקיות הפרויקט פותחים <code>src/main/java/com/example/gcm/Launcher.java</code>. לוחצים בלחצן ימני בתוך הקובץ ובוחרים <span class="ltr">Run 'Launcher.main()'</span>. אם מופיעה תצורת <code>Lab3</code> מוכנה, אפשר לבחור בה.</p>
+<h3>שלב 5 — הכנסת הארגומנטים</h3>
+<ol><li>פותחים <span class="ltr">Run → Edit Configurations</span> ובוחרים <code>Lab3</code> או <code>Launcher</code>.</li><li>בשדה <span class="ltr">Program arguments</span> כותבים <code>3 10</code>. אם השדה מוסתר, מחפשים אותו תחת <span class="ltr">Modify options</span>.</li><li>השדה <span class="ltr">Working directory</span> צריך להצביע לתיקייה שבה נמצאים <code>pom.xml</code> ו־<code>users.txt</code>.</li><li>מאשרים ומריצים. שני המספרים הם: <code>n=3</code> כשלונות עד חסימה, <code>t=10</code> שניות חסימה. מזינים אותם ב־Program arguments, ולא ב־VM options.</li></ol>
+<p class="note">אם הארגומנטים חסרים או שגויים, חלון ההתחברות עדיין לא נפתח. בחלונית <span class="ltr">Run</span> בתחתית IntelliJ לוחצים באזור הקונסולה, מקלידים <code>3 10</code> ולוחצים Enter. התוכנית תבקש שוב עד שהקלט תקין.</p>
+<h3>נתוני התחברות תקינים מתוך קובץ הדוגמה</h3>
+<pre>username: hello@world.net
+password: 01041972^H</pre>
+</section>
+<section>
+<h2>בדיקות שצריך לבצע ולצלם</h2>
+<p>בהרצה עם <code>3 10</code> משתמשים באימייל <code>hello@world.net</code> ובסיסמה שגויה כמו <code>bad</code>.</p>
+<table><thead><tr><th>פעולה</th><th>מה אמור לקרות</th></tr></thead><tbody>
+<tr><td>כשלון ראשון</td><td>הודעה עם 2 ניסיונות שנותרו.</td></tr>
+<tr><td>כשלון שני</td><td>נותר ניסיון אחד.</td></tr>
+<tr><td>כשלון שלישי</td><td>חסימה וספירה לאחור; כפתור Login מושבת עבור האימייל שבשדה.</td></tr>
+<tr><td>המתנה עד תום החסימה</td><td>ההודעה נעלמת, הכפתור חוזר לפעול והמונה מתאפס.</td></tr>
+<tr><td>פרטים תקינים אחרי השחרור</td><td>נפתח מסך Welcome של מטלה 2 עם האימייל.</td></tr>
+<tr><td>אימייל שאינו בקובץ</td><td>הודעה כללית בלבד, ללא מספר ניסיונות וללא יצירת מונה.</td></tr>
+</tbody></table>
+<h3>שלב 6 — בדיקה בין שני חלונות</h3>
+<p>לוחצים <span class="ltr">Open another login window</span>. טועים פעם בחלון הראשון ופעם בשני עם אותו אימייל: המונה משותף. לאחר חסימה, גם סיסמה נכונה בחלון השני נדחית. אלו חלונות של אותו תהליך; שתי הפעלות נפרדות מחזיקות זיכרון נפרד, בהתאם לדרישת השמירה בזיכרון בלבד.</p>
+<p>במהלך חסימה אפשר לשנות את האימייל כדי לנסות חשבון אחר. שינוי הטקסט אינו מסיר את החסימה של החשבון הקודם. סגירת אחד החלונות מסיימת את כל חלונות התוכנית.</p>
+<h3>שלב 7 — בדיקת 20 החוטים</h3>
+<p>לוחצים <span class="ltr">Run synchronization test (20 threads)</span>. הבדיקה משתמשת במצב בדיקה נפרד עם <code>n=10000</code>, כדי לא לשנות את החסימה של המשתמשים האמיתיים. התוצאה המצופה:</p>
+<pre>After parallel work: 9980 (expected 9980)
+After 19 more: 9999; blocked=false
+After the 20th: 10000; blocked=true
+PASS: no lost updates; exact blocking threshold.</pre>
+<h3>צילומי המסך הנדרשים להגשה</h3>
+<ol><li>ארגומנטים שגויים והבקשה להזנה ידנית בקונסולה.</li><li>התחברות מוצלחת ומסך Welcome.</li><li>כשלון עם מספר הניסיונות שנותרו.</li><li>חסימה עם ספירה לאחור.</li><li>שחרור החסימה והכפתור הזמין.</li><li>תוצאת הניסוי עם סנכרון ובלעדיו, וצילום היסטוריית ה־commits.</li></ol>
+<p class="note">המרצה מבקש צילומים מהרצה במחשב שלכם. טיוטת הדוח המצורפת עדיין אינה מוכנה להגשה: יש להשלים בה את הצילומים ולוודא שהקישור לענף שפורסם אכן נפתח.</p>
+</section>
+<section>
+<h2>ניסוי, העלאה והגשה</h2>
+<h3>שלב 8 — השוואה ללא synchronized</h3>
+<p>צורף סקריפט שמבצע שתי הרצות על עותקים זמניים של הקוד: אחת רגילה ואחת שבה הוסר <code>synchronized</code> מ־<code>UserState</code>. קוד ההגשה המקורי נשאר מסונכרן.</p>
+<p>ב־Windows פותחים <span class="ltr">View → Tool Windows → Terminal</span>, מוודאים שנמצאים בתיקיית הפרויקט ומריצים:</p>
+<pre>powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\compare-synchronization.ps1 -BlockSeconds 10</pre>
+<p>אם מתבקשת תיקיית JDK, מעתיקים את התיקייה שמוצגת ב־Project Structure → SDKs. בסקריפט מחפשים תיקייה שבתוכה <code>bin\javac.exe</code>. אם בהרצה ללא סנכרון מתקבל PASS, מריצים שוב: תנאי מרוץ תלוי בתזמון, ולכן אינו חייב להופיע בכל הרצה.</p>
+<h3>שלב 9 — פרסום הענף ושמירת היסטוריה</h3>
+<ol><li>הפרויקט המצורף כולל ענף מקומי <code>lab3</code> והיסטוריית עבודה, המבוססים על <code>lab2</code>. ב־IntelliJ בודקים שהענף הפעיל הוא <code>lab3</code>.</li><li>מבצעים <span class="ltr">Git → Push</span> אל <code>origin/lab3</code>. נדרשת הרשאת כתיבה למאגר של <code>eyalkhatteb</code>; אם אין לך הרשאה, בעל המאגר צריך לאפשר אותה או לפרסם את הענף מחשבונו.</li><li>אין לבחור <span class="ltr">Force Push</span>. אם כבר קיים ענף lab3 אחר בשרת, יש להשוות ולשלב את העבודה לפני העלאה.</li><li>לאחר העלאה מוצלחת בודקים בדפדפן את <code>https://github.com/eyalkhatteb/GCM-Labs/tree/lab3</code>.</li><li>לצפייה בהיסטוריה בוחרים את הענף ולוחצים על קישור ה־commits ליד השינוי האחרון. אפשר לפתוח ישירות את הנתיב <code>/commits/lab3</code>. מצלמים את הרשימה ואת פרטי commit אחד.</li></ol>
+<h3>שלב 10 — סיום ההגשה</h3>
+<p>סוגרים את החלון בזמן ספירה לאחור ומוודאים ב־IntelliJ שההרצה נעצרה. משלימים את הצילומים בטיוטת הדוח, מאשרים את קישור המאגר ורק אז שומרים את הקובץ הסופי בשם <code>ID1_ID2.pdf</code>. לפי ההוראות מעלים למערכת הקורס PDF בלבד; קוד המקור נמצא ב־GitHub.</p>
+<h3>אם משהו לא עובד</h3>
+<table><tr><th>הודעה/בעיה</th><th>בדיקה</th></tr><tr><td><code>release version 25 not supported</code></td><td>Project SDK ו־Maven Runner צריכים להיות JDK 25.</td></tr><tr><td><code>users.txt</code> לא נמצא</td><td>Working directory חייב להיות שורש הפרויקט.</td></tr><tr><td>JavaFX מסומן באדום</td><td>טוענים את pom.xml ומבצעים Reload ל־Maven עם אינטרנט.</td></tr><tr><td>Git אינו מזוהה</td><td>Settings → Version Control → Git → Test, והתקנת Git אם חסר.</td></tr></table>
+<p class="small">מקורות: הוראות Lab3.pdf והמצגת שצורפו; הקוד בענפים main ו־lab2; תיעוד <a href="https://www.jetbrains.com/help/idea/program-arguments-and-environment-variables.html">IntelliJ לארגומנטים</a>, <a href="https://www.jetbrains.com/help/idea/sdk.html">JDK ב־IntelliJ</a>, <a href="https://openjfx.io/openjfx-docs/">OpenJFX</a>, <a href="https://docs.github.com/en/repositories/viewing-activity-and-data-for-your-repository">היסטוריית GitHub</a>.</p>
+</section></html>

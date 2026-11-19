@@ -8,16 +8,18 @@ import java.util.function.Consumer;
 
 /** The required 20 x 499 test, isolated from the real login accounts and policy. */
 public final class ConcurrencyDemo implements Runnable {
+    private final int blockSeconds;
     private final Consumer<String> onFinished;
 
-    public ConcurrencyDemo(Consumer<String> onFinished) {
+    public ConcurrencyDemo(int blockSeconds, Consumer<String> onFinished) {
+        this.blockSeconds = blockSeconds;
         this.onFinished = onFinished;
     }
 
     @Override
     public void run() {
         try {
-            String output = experiment();
+            String output = experiment(blockSeconds);
             System.out.println(output);
             Platform.runLater(() -> onFinished.accept(output));
         } catch (InterruptedException e) {
@@ -26,8 +28,8 @@ public final class ConcurrencyDemo implements Runnable {
     }
 
     /** Console entry point uses the same experiment as the button. */
-    public static String experiment() throws InterruptedException {
-        AttemptTracker tracker = new AttemptTracker(10_000, 30);
+    public static String experiment(int blockSeconds) throws InterruptedException {
+        AttemptTracker tracker = new AttemptTracker(10_000, blockSeconds);
         String email = "concurrency@test.example";
         tracker.registerUser(email);
         CountDownLatch ready = new CountDownLatch(20);
@@ -79,6 +81,9 @@ public final class ConcurrencyDemo implements Runnable {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        System.out.println(experiment());
+        if (args.length != 1) {
+            throw new IllegalArgumentException("Supply the experiment's block duration in seconds.");
+        }
+        System.out.println(experiment(Integer.parseInt(args[0])));
     }
 }

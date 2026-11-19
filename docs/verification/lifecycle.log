@@ -1,0 +1,12 @@
+Nov 19, 2026 3:44:13 AM com.sun.javafx.application.PlatformImpl startup
+WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @3d6e3da5'
+hello 123456789  -->  Please enter a valid Email as username
+password@error.now ~helloworld  -->  Please enter a valid password
+thisEmailIsToLong@wow0123456789wow0123456789wow0123456789.co.il  @1234Abcd  -->  Username is too long, try something shorter
+passwordTooShort@mail.ru 123  -->  Your password is too short, add more characters
+passwordToolong@mail.ru 123456789ABcdefg  -->  Your password is too long, try a shorter one
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::allocateMemory has been called by com.sun.marlin.OffHeapArray (file:/home/agent/.m2/repository/org/openjfx/javafx-graphics/21.0.6/javafx-graphics-21.0.6-linux.jar)
+WARNING: Please consider reporting this to the maintainers of class com.sun.marlin.OffHeapArray
+WARNING: sun.misc.Unsafe::allocateMemory will be removed in a future release
+APPLICATION CLOSE PASS: real init/start/stop; closed during 30-second block.

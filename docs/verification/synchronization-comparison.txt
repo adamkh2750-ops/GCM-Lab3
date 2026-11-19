@@ -1,0 +1,12 @@
+VARIANT: synchronized
+20 threads x 499 failures; n=10000
+After parallel work: 9980 (expected 9980)
+After 19 more: 9999; blocked=false
+After the 20th: 10000; blocked=true
+PASS: no lost updates; exact blocking threshold.
+VARIANT: unsynchronized
+20 threads x 499 failures; n=10000
+After parallel work: 6718 (expected 9980)
+After 19 more: 6737; blocked=false
+After the 20th: 6738; blocked=false
+FAIL: updates were lost or the threshold was incorrect.

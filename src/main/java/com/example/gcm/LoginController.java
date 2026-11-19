@@ -111,6 +111,7 @@ public class LoginController {
         testButton.setDisable(true);
         testOutput.setText("Running 20 threads against one separate test account...");
         testThread = runtime.threads().start("synchronization-demo", new ConcurrencyDemo(
+                runtime.config().blockSeconds(),
                 text -> {
                     if (!disposed) {
                         testOutput.setText(text);
