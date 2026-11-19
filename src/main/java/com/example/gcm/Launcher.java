@@ -1,19 +1,18 @@
 package com.example.gcm;
 
 import javafx.application.Application;
+import java.util.Scanner;
 
-/**
- * Starts the GCM login program. Keeping main() in a class that does not extend
- * Application is the usual way to run a JavaFX program from a JAR file.
- */
+/** Validates arguments in the console before the first JavaFX window exists. */
 public class Launcher {
-
-    /**
-     * Program entry point: launches the JavaFX application.
-     *
-     * @param args command-line arguments, passed on to JavaFX
-     */
     public static void main(String[] args) {
-        Application.launch(LoginApplication.class, args);
+        LoginConfig config;
+        try (Scanner input = new Scanner(System.in)) {
+            config = LoginConfig.read(args, input, System.out);
+        }
+        if (config != null) {
+            Application.launch(LoginApplication.class,
+                    Integer.toString(config.maxFailures()), Integer.toString(config.blockSeconds()));
+        }
     }
 }
