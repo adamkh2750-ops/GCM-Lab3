@@ -51,6 +51,6 @@ The scripts leave production sources unchanged. Races are nondeterministic; an u
 
 ## Submission status
 
-The local branch is `lab3`, based on `lab2`, with staged development commits. It has not been published to the original repository. Push `lab3` with an account that has write permission, verify the public branch URL, capture the required screenshots on your own computer, and complete the draft PDF before submitting it. The final required PDF filename is `ID1_ID2.pdf`.
+Adam and Eyal share the Lab 2 base at commit `0e4dd14`. This copy contains the Lab 3 version for Adam’s GitHub account, `adamkh2750-ops`. Set the upload destination to Adam’s own repository using step 9 of the Hebrew guide. The PDF lists both students and links to the `lab3` branch in Adam’s repository. Its submission filename is `ID1_ID2.pdf`.
 
 The report and local verification evidence are described in `docs/report-draft.md` and `docs/verification.md`. A draft is not a final submission.

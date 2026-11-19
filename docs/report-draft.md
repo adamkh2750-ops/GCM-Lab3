@@ -9,7 +9,7 @@ Adam Kharbawi, Eyal Khatteb
 ## 1. Repository and integration
 
 
-Base repository: [github.com/eyalkhatteb/GCM-Labs](https://github.com/eyalkhatteb/GCM-Labs). The local lab3 branch starts from lab2 commit 0e4dd14. It contains the required staged development history. Target URL after publication: [github.com/eyalkhatteb/GCM-Labs/tree/lab3](https://github.com/eyalkhatteb/GCM-Labs/tree/lab3). This target was not published during preparation.
+This implementation starts at commit `0e4dd14` on [Eyal’s Lab 2 branch](https://github.com/eyalkhatteb/GCM-Labs/tree/lab2). Adam publishes this Lab 3 version under `adamkh2750-ops`. Both students are named on the PDF. Add the link to the `lab3` branch in Adam’s repository once it is published.
 
 Lab 1 User, UsersApp and InvalidUserException are reused unchanged. LoginService calls the User constructor for input validation and User.matches from Lab 2 for authentication. LoginTask catches InvalidUserException and treats malformed credentials as a failed login. The Lab 2 WelcomeController and welcome-view.fxml are retained.
 

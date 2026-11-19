@@ -1,11 +1,19 @@
 <!doctype html><html lang="he" dir="rtl"><meta charset="utf-8"><title>Lab 3 — מדריך התקנה והפעלה</title>
 <style>
 @page{size:A4;margin:17mm 17mm 18mm}*{box-sizing:border-box}body{font-family:'DejaVu Sans',Arial,sans-serif;color:#16243a;font-size:11.3pt;line-height:1.55;margin:0}h1{font-size:23pt;line-height:1.25;margin:0 0 8mm}h2{font-size:16pt;margin:0 0 4mm;color:#154c85}h3{font-size:12pt;margin:4mm 0 1mm}p{margin:2mm 0 3mm}table{border-collapse:collapse;width:100%;font-size:10.3pt;margin:4mm 0}th,td{border-bottom:1px solid #ccd5df;padding:2.5mm;vertical-align:top;text-align:right}th{background:#eaf0f7;color:#123f6d}ol,ul{padding-right:6mm;margin:2mm 0}li{margin:2mm 0}code,.ltr{direction:ltr;unicode-bidi:embed;font-family:'DejaVu Sans Mono',monospace;font-size:9.7pt}pre{direction:ltr;text-align:left;white-space:pre-wrap;overflow-wrap:anywhere;background:#f0f3f7;padding:3mm;font-size:9pt;line-height:1.4;color:#172c44}a{color:#13559a}section+section{break-before:page}.note{background:#f0f5fb;padding:3mm 4mm;border-right:3px solid #296ca8}.small{font-size:9.4pt;color:#4f6074}.step{font-weight:bold}.tag{color:#376489;font-size:10pt;margin-bottom:2mm}.keep{break-inside:avoid}
-section:nth-of-type(3){font-size:10.7pt;line-height:1.45}section:nth-of-type(3) li{margin:1.5mm 0}section:last-of-type{font-size:10.2pt;line-height:1.4}section:last-of-type table{font-size:9.4pt}section:last-of-type td,section:last-of-type th{padding:2mm}section:last-of-type .small{font-size:8.7pt}</style>
+section:nth-of-type(3){font-size:10.7pt;line-height:1.45}section:nth-of-type(3) li{margin:1.5mm 0}section:last-of-type{font-size:10.2pt;line-height:1.4}section:last-of-type table{font-size:9.4pt}section:last-of-type td,section:last-of-type th{padding:2mm}section:last-of-type .small{font-size:8.7pt}
+@media print {
+  section:last-of-type pre { margin: 1mm 0 2mm; padding: 1.8mm 3mm; }
+  section:last-of-type h3 { margin: 3mm 0 1mm; }
+  section:last-of-type p { margin: 1.5mm 0 2mm; }
+  section:last-of-type li { margin: 1mm 0; }
+  section:last-of-type td, section:last-of-type th { padding: 1.3mm 2mm; }
+}
+</style>
 <section>
 <div class="tag">הנדסת תוכנה · Lab 3 · המשך למטלות 1–2</div><h1>מה צריך להתקין<br>ואיך מתחילים</h1>
 <p>הפתרון ממשיך את ענף <code>lab2</code> במאגר הקיים. לפי הפרויקט, סביבת העבודה היא <b>JDK 25</b> ו־JavaFX בגרסה 21.0.6. אין צורך בהתקנה מיוחדת עבור חוטים, סנכרון או תורים.</p>
-<p class="note">את הקבצים וההגדרות בפרויקט בדקתי. מה מותקן בפועל במחשב שלך צריך לוודא מתוך IntelliJ; התקנות שביצענו בעבר אינן הוכחה שההגדרות עדיין פעילות.</p>
+<p class="note">במחשב של אדם, IntelliJ זיהה את JDK 25 ואת Git, ומסך ההתחברות של מטלה 3 נפתח בהצלחה. שלב 9 מסביר איך לפרסם את הגרסה שנבדקה בחשבון שלו.</p>
 <table><thead><tr><th>רכיב</th><th>האם צריך?</th><th>מה עושים</th></tr></thead><tbody>
 <tr><td>IntelliJ IDEA</td><td>סביבת העבודה המומלצת</td><td>אם כבר מותקנת ונפתחת — משתמשים בה.</td></tr>
 <tr><td>JDK 25</td><td>נדרש לפרויקט כפי שהוגדר</td><td>בודקים ב־Project SDK. מורידים רק אם אינו זמין.</td></tr>
@@ -63,11 +71,21 @@ PASS: no lost updates; exact blocking threshold.</pre>
 <p>צורף סקריפט שמבצע שתי הרצות על עותקים זמניים של הקוד: אחת רגילה ואחת שבה הוסר <code>synchronized</code> מ־<code>UserState</code>. קוד ההגשה המקורי נשאר מסונכרן.</p>
 <p>ב־Windows פותחים <span class="ltr">View → Tool Windows → Terminal</span>, מוודאים שנמצאים בתיקיית הפרויקט ומריצים:</p>
 <pre>powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\compare-synchronization.ps1 -BlockSeconds 10</pre>
-<p>אם מתבקשת תיקיית JDK, מעתיקים את התיקייה שמוצגת ב־Project Structure → SDKs. בסקריפט מחפשים תיקייה שבתוכה <code>bin\javac.exe</code>. אם בהרצה ללא סנכרון מתקבל PASS, מריצים שוב: תנאי מרוץ תלוי בתזמון, ולכן אינו חייב להופיע בכל הרצה.</p>
-<h3>שלב 9 — פרסום הענף ושמירת היסטוריה</h3>
-<ol><li>הפרויקט המצורף כולל ענף מקומי <code>lab3</code> והיסטוריית עבודה, המבוססים על <code>lab2</code>. ב־IntelliJ בודקים שהענף הפעיל הוא <code>lab3</code>.</li><li>מבצעים <span class="ltr">Git → Push</span> אל <code>origin/lab3</code>. נדרשת הרשאת כתיבה למאגר של <code>eyalkhatteb</code>; אם אין לך הרשאה, בעל המאגר צריך לאפשר אותה או לפרסם את הענף מחשבונו.</li><li>אין לבחור <span class="ltr">Force Push</span>. אם כבר קיים ענף lab3 אחר בשרת, יש להשוות ולשלב את העבודה לפני העלאה.</li><li>לאחר העלאה מוצלחת בודקים בדפדפן את <code>https://github.com/eyalkhatteb/GCM-Labs/tree/lab3</code>.</li><li>לצפייה בהיסטוריה בוחרים את הענף ולוחצים על קישור ה־commits ליד השינוי האחרון. אפשר לפתוח ישירות את הנתיב <code>/commits/lab3</code>. מצלמים את הרשימה ואת פרטי commit אחד.</li></ol>
+<p>אם הסקריפט מבקש JDK, מעתיקים את הנתיב מ־<span class="ltr">Project Structure → SDKs</span>. אם הגרסה ללא סנכרון עוברת, מריצים שוב. איבוד העדכונים תלוי בתזמון החוטים.</p>
+<h3>שלב 9 — פרסום בחשבון של אדם</h3>
+<p>שתי הגרסאות של מטלה 3 יוצאות מענף <code>lab2</code> של אייל, מהקומיט <code>0e4dd14</code>. את הגרסה שבדקת מפרסמים בחשבון <code>adamkh2750-ops</code>.</p>
+<ol>
+<li>ב־<a href="https://github.com/new">GitHub</a> יוצרים מאגר ריק בחשבון שלך. אפשר לקרוא לו <code>GCM-Lab3</code>. משאירים את יצירת README, ‏gitignore ורישיון כבויה. מדף המאגר מעתיקים את כתובת ה־HTTPS.</li>
+<li>בטרמינל PowerShell של הפרויקט מריצים את השורה הראשונה, מדביקים את הכתובת כשתתבקש ולוחצים Enter. השורה השנייה מציגה את היעד שהגדרת.
+<pre>git remote set-url origin (Read-Host "Paste your GitHub HTTPS URL")
+git remote -v</pre></li>
+<li>אחרי שווידאת שהכתובת של <code>origin (push)</code> מכילה את החשבון שלך ואת שם המאגר שבחרת, מעלים את ענף העבודה ואת נקודת המוצא של מטלה 2.
+<pre>git push -u origin lab3
+git push origin 0e4dd14:refs/heads/lab2</pre></li>
+<li>פותחים את המאגר שלך בדפדפן, בוחרים <code>lab3</code> ומעתיקים את כתובת הענף לדוח. במאגר פרטי נותנים למרצה גישת קריאה.</li>
+</ol>
 <h3>שלב 10 — סיום ההגשה</h3>
-<p>סוגרים את החלון בזמן ספירה לאחור ומוודאים ב־IntelliJ שההרצה נעצרה. משלימים את הצילומים בטיוטת הדוח, מאשרים את קישור המאגר ורק אז שומרים את הקובץ הסופי בשם <code>ID1_ID2.pdf</code>. לפי ההוראות מעלים למערכת הקורס PDF בלבד; קוד המקור נמצא ב־GitHub.</p>
+<p>מוודאים שהדוח כולל את הצילומים מהרצת Windows ואת סיום התהליך ב־IntelliJ. בעמוד הראשון בודקים ששניכם רשומים ושהקישור פותח את ענף <code>lab3</code> בחשבון שלך. מעלים למערכת הקורס את <code>ID1_ID2.pdf</code>.</p>
 <h3>אם משהו לא עובד</h3>
 <table><tr><th>הודעה/בעיה</th><th>בדיקה</th></tr><tr><td><code>release version 25 not supported</code></td><td>Project SDK ו־Maven Runner צריכים להיות JDK 25.</td></tr><tr><td><code>users.txt</code> לא נמצא</td><td>Working directory חייב להיות שורש הפרויקט.</td></tr><tr><td>JavaFX מסומן באדום</td><td>טוענים את pom.xml ומבצעים Reload ל־Maven עם אינטרנט.</td></tr><tr><td>Git אינו מזוהה</td><td>Settings → Version Control → Git → Test, והתקנת Git אם חסר.</td></tr></table>
 <p class="small">מקורות: הוראות Lab3.pdf והמצגת שצורפו; הקוד בענפים main ו־lab2; תיעוד <a href="https://www.jetbrains.com/help/idea/program-arguments-and-environment-variables.html">IntelliJ לארגומנטים</a>, <a href="https://www.jetbrains.com/help/idea/sdk.html">JDK ב־IntelliJ</a>, <a href="https://openjfx.io/openjfx-docs/">OpenJFX</a>, <a href="https://docs.github.com/en/repositories/viewing-activity-and-data-for-your-repository">היסטוריית GitHub</a>.</p>
